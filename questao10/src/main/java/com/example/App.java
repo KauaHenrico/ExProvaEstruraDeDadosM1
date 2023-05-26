@@ -3,80 +3,73 @@ import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
-        int[] vetor = {3, 7, 1, 4, 9, 2};
+        int[] array = {3, 7, 1, 4, 9, 2};
 
-        System.out.println("Bubble Sort:");
-        bubbleSort(vetor.clone());
+        System.out.println("Vetor original: " + Arrays.toString(array));
 
-        System.out.println("\nSelection Sort:");
-        selectionSort(vetor.clone());
+        // Bubble Sort
+        bubbleSort(array.clone());
 
-        System.out.println("\nInsertion Sort:");
-        insertionSort(vetor.clone());
+        // Selection Sort
+        selectionSort(array.clone());
+
+        // Insertion Sort
+        insertionSort(array.clone());
     }
 
-    public static void bubbleSort(int[] vetor) {
-        int n = vetor.length;
-        boolean trocou;
-
+    public static void bubbleSort(int[] array) {
+        System.out.println("\nBubble Sort:");
+        int n = array.length;
+        boolean swapped;
         for (int i = 0; i < n - 1; i++) {
-            trocou = false;
-
+            swapped = false;
             for (int j = 0; j < n - i - 1; j++) {
-                if (vetor[j] > vetor[j + 1]) {
-                    troca(vetor, j, j + 1);
-                    trocou = true;
+                if (array[j] > array[j + 1]) {
+                    // Swap elements
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                    swapped = true;
+                    System.out.println(Arrays.toString(array));
                 }
             }
-
-            if (!trocou) {
+            if (!swapped) {
+                // Array is already sorted, break the loop
                 break;
             }
-
-            System.out.println("Passo " + (i + 1) + ": " + Arrays.toString(vetor));
         }
     }
 
-    public static void selectionSort(int[] vetor) {
-        int n = vetor.length;
-
+    public static void selectionSort(int[] array) {
+        System.out.println("\nSelection Sort:");
+        int n = array.length;
         for (int i = 0; i < n - 1; i++) {
-            int indiceMinimo = i;
-
+            int minIndex = i;
             for (int j = i + 1; j < n; j++) {
-                if (vetor[j] < vetor[indiceMinimo]) {
-                    indiceMinimo = j;
+                if (array[j] < array[minIndex]) {
+                    minIndex = j;
                 }
             }
-
-            if (indiceMinimo != i) {
-                troca(vetor, i, indiceMinimo);
-                System.out.println("Passo " + (i + 1) + ": " + Arrays.toString(vetor));
-            }
+            // Swap elements
+            int temp = array[minIndex];
+            array[minIndex] = array[i];
+            array[i] = temp;
+            System.out.println(Arrays.toString(array));
         }
     }
 
-    public static void insertionSort(int[] vetor) {
-        int n = vetor.length;
-
+    public static void insertionSort(int[] array) {
+        System.out.println("\nInsertion Sort:");
+        int n = array.length;
         for (int i = 1; i < n; i++) {
-            int chave = vetor[i];
+            int key = array[i];
             int j = i - 1;
-
-            while (j >= 0 && vetor[j] > chave) {
-                vetor[j + 1] = vetor[j];
+            while (j >= 0 && array[j] > key) {
+                array[j + 1] = array[j];
                 j--;
             }
-
-            vetor[j + 1] = chave;
-
-            System.out.println("Passo " + i + ": " + Arrays.toString(vetor));
+            array[j + 1] = key;
+            System.out.println(Arrays.toString(array));
         }
-    }
-
-    public static void troca(int[] vetor, int i, int j) {
-        int temp = vetor[i];
-        vetor[i] = vetor[j];
-        vetor[j] = temp;
     }
 }
