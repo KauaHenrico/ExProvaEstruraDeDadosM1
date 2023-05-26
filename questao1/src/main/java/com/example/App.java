@@ -8,11 +8,13 @@ public class App {
 
         int[] intersecao = IntersecaoArrays.encontrarIntersecao(arr1, arr2);
 
+        System.out.println("Interseção: ");
         System.out.println(Arrays.toString(intersecao)); // Saída: []
 
         int[] arr3 = {1, 2, 3, 4, 5};
         int[] arr4 = {4, 5, 6, 7};
 
+        System.out.println("Interseção: ");
         int[] intersecao2 = IntersecaoArrays.encontrarIntersecao(arr3, arr4);
 
         System.out.println(Arrays.toString(intersecao2)); // Saída: [4, 5]
